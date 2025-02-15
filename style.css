@@ -122,19 +122,19 @@ body{
     display: none;
 }
 
-#replay-button{
+/* #replay-button{
     height: 8vh;
     width: 8vh;
-    /* border: 1px solid white; */
+    border: 1px solid white;
     margin-top: 8px;
     margin-left: 20px;
     cursor: pointer;
-}
+} */
 
-#replay-button img{
+/* #replay-button img{
     height: 100%;
     width: 100%;
-}
+} */
 
 #storyline{
     height: 20vh;
@@ -357,7 +357,7 @@ body{
 #start-over{
     height: 9vh;
     width: 15vw;
-    margin-left: 35.5vw;
+    margin-left: 40.5vw;
     border-radius: 12px;
     border: none;
     outline: none;

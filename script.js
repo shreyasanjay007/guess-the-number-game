@@ -20,19 +20,19 @@ window.onload = function(){
 
     setTimeout( ()=>{
         document.getElementById('line1').classList.add('fade-in');
-    },2000 )
+    },100 )
 
     setTimeout( ()=>{
         document.getElementById('line2').classList.add('fade-in');
-    },5000 )
+    },100 )
 
     setTimeout( ()=>{
         document.getElementById('line3').classList.add('fade-in');
-    },8000 )
+    },100 )
 
     setTimeout( ()=>{
         document.getElementById('play-btn').classList.add('bounce')
-    },11000 )
+    },100 )
 }
 
 const shout = new Audio('hey.mp3')
@@ -61,10 +61,10 @@ play.addEventListener('click',()=>{
     gameScreen.id = 'game-screen'
     gameBody.appendChild(gameScreen)
 
-    const replayButton = document.createElement('div')
-    replayButton.id = 'replay-button'
-    replayButton.innerHTML = `<img src="replay.png" />`
-    endBar.appendChild(replayButton)
+    // const replayButton = document.createElement('div')
+    // replayButton.id = 'replay-button'
+    // replayButton.innerHTML = `<img src="replay.png" />`
+    // endBar.appendChild(replayButton)
  
 
     const startOver = document.createElement('button')
@@ -222,20 +222,33 @@ play.addEventListener('click',()=>{
         })
     }
 
-    replayButton.addEventListener('click',()=>{
-        console.log('click');
-        randomNumber = parseInt(Math.random()*100+1)
-        console.log(randomNumber);
-        prevGuess = [];
-        numGuess = 2
-        guessSlot.innerHTML = '';
-        remaining.innerHTML = `${12 - numGuess}`;
-
-        hint.innerHTML = 'HINT'
-        hint.style.backgroundColor = '#8b5e3cd1'
-
+    // replayButton.addEventListener('click',()=>{
+    //     console.log('click');
+    //     // playGame = false;
+    //     randomNumber = parseInt(Math.random()*100+1)
+    //     console.log(randomNumber);
+    //     prevGuess = [];
+    //     numGuess = 2
+    //     guessSlot.innerHTML = '';
+    //     attempts.innerHTML = 'Attempts Left :  <span id="last-result" >&nbsp;10</span>'
+    //     remaining.innerHTML = `${12 - numGuess}`;
+    //     // remaining.innerHTML = '10';
+    //     hint.innerHTML = 'HINT'
+    //     hint.style.backgroundColor = '#8b5e3cd1'
+    //     hint.classList.remove('pulse')
+    //     opened.classList.remove('bounce')
+    //     opened.classList.remove('pulse')
+    //     opened.style.display = 'none'
+    //     locked.style.display = 'flex'
+    //     userInput.removeAttribute('disabled')
+    //     userInput.style.backgroundColor = 'rgba(0, 0, 0, 0.623)'
+    //     userInput.value = ''
+    //     userInput.placeholder = 'Enter the Secret Number'
+    //     submit.style.display = 'flex'
         
-    })
+    //     playGame = true;
+        
+    // })
    
    
 

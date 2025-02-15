@@ -20,19 +20,19 @@ window.onload = function(){
 
     setTimeout( ()=>{
         document.getElementById('line1').classList.add('fade-in');
-    },100 )
+    },2000 )
 
     setTimeout( ()=>{
         document.getElementById('line2').classList.add('fade-in');
-    },100 )
+    },5000 )
 
     setTimeout( ()=>{
         document.getElementById('line3').classList.add('fade-in');
-    },100 )
+    },8000 )
 
     setTimeout( ()=>{
         document.getElementById('play-btn').classList.add('bounce')
-    },100 )
+    },11000 )
 }
 
 const shout = new Audio('hey.mp3')
@@ -41,10 +41,16 @@ const gameBody = document.getElementById('game-body')
 const endBar = document.getElementById('end-bar')
 const storyline = document.getElementById('storyline')
 const tagline = document.getElementById('tagline')
+const cash = new Audio('coin-dropped.mp3')
+const lose = new Audio('lose.mp3')
+// const win = new Audio('win.mp3')
+const win = new Audio('yay.mp3')
+const wrong = new Audio('wrong-buzzer.mp3')
+const retry = new Audio('retry.mp3')
 
 
 play.addEventListener('click',()=>{
-    // shout.play();
+    shout.play();
     gameBody.removeChild(storyline)
     gameBody.removeChild(tagline)
     gameBody.removeChild(play)
@@ -58,15 +64,22 @@ play.addEventListener('click',()=>{
     startOver.innerText = 'Dare to try again?'
     // endBar.appendChild(startOver)
 
-    gameScreen.innerHTML = `<div id="ship" ><img src="ship.png" width="300px" /></div>
+    gameScreen.innerHTML = `<div id="ship" >
+                                <img id="ship-sail" src="ship.png" width="300px" />
+                                <img id="ship-sank" src="ship-sink.png" width="300px" />
+                            </div>
                             <div id="game" >
                                 <div id="attempts"  >Attempts Left :  <span id="last-result" >&nbsp;10</span> </div>
                                 <input id="guess-field" type="text" placeholder="Enter the Secret Number" ></input>
-                                <input id="subt" type="submit" placeholder="Cash Your Guess, Captain!" ></input>
-                                <div id="hint" ></div>
+                                <input id="subt" type="submit" value="Cash Your Guess, Captain!" ></input>
+                                <div id="hint" >HINT</div>
                                 <div id="prev-array">Previous Guesses:<span id="guesses" ></span></div>
                             </div>
-                            <div id="treasure" ><img src="chest-locked.png" width="250px"/> </div>`
+                            <div id="treasure" >
+                            <img id="locked" src="chest-locked.png" width="250px"/> 
+                            <img id="opened" src="chest.png" width="250px"/> 
+
+                            </div>`
 
     const remaining = document.getElementById('last-result');
     const userInput = document.getElementById('guess-field');
@@ -74,9 +87,15 @@ play.addEventListener('click',()=>{
     const hint = document.getElementById('hint')
     const guessSlot = document.getElementById('guesses')
     const attempts = document.getElementById('attempts')
+    const locked = document.getElementById('locked')
+    const opened = document.getElementById('opened')
+    const shipSail = document.getElementById('ship-sail')
+    const shipSank = document.getElementById('ship-sank')
     
     let randomNumber = parseInt(Math.random()*100+1);
-    let numGuess = 1;
+    console.log(randomNumber);
+    
+    let numGuess = 2;
     let prevGuess = [];
     let playGame = true;
 
@@ -85,6 +104,7 @@ play.addEventListener('click',()=>{
             e.preventDefault();
             const guess = parseInt(userInput.value);
             // console.log(guess);
+            // cash.play();
             validateGuess(guess);
             
         })
@@ -102,6 +122,13 @@ play.addEventListener('click',()=>{
             if(numGuess === 11){
                 displayGuess(guess);
                 displayMessage(`Game Over! Secret Number was ${randomNumber}`);
+                submit.style.display = 'none'
+                hint.style.backgroundColor = 'red'
+                shipSail.style.display = 'none'
+                shipSank.style.display = 'flex'
+                lose.play();
+                shipSank.classList.add('shaking')
+                shipSank.classList.add('sinking')
                 endGame();
             } else{
                 displayGuess(guess)
@@ -114,12 +141,29 @@ play.addEventListener('click',()=>{
         if(guess === randomNumber){
             displayMessage(`You found the treasure`)
             userInput.setAttribute('disabled','');
-            userInput
-            attempts.innerHTML = `You guessed the secret number in ${numGuess-1} attempts!`
+            attempts.innerHTML = `You guessed the secret number in ${numGuess-2} attempts!`;
+            hint.classList.add('pulse')
+            hint.style.backgroundColor = '#50C878'
+            hint.style.color = 'black'
+            userInput.placeholder = 'Gold is yours, Captain!'
+            userInput.style.backgroundColor = "#FFD700";  
+            submit.style.display = 'none'
+            locked.style.display = 'none'
+            opened.style.display = 'flex'
+            opened.classList.add('bounce')
+            opened.classList.add('pulse')
+            setTimeout( ()=>{
+                win.play();
+            },1500 )
+
         } else if(guess < randomNumber){
-            displayMessage(`Sail Higher, Captain!`)
+            displayMessage(`The treasure lies above, Matey!`)
+            hint.style.backgroundColor = '#1E90FF'
+            wrong.play();
         } else if(guess > randomNumber){
-            displayMessage(`Sail Lower, Mate!`)
+            displayMessage(`Drop Anchor, You're too high!`)
+            hint.style.backgroundColor = "#2F4F4F";
+            wrong.play();
         }
     }
 
@@ -127,7 +171,7 @@ play.addEventListener('click',()=>{
         userInput.value = '';
         guessSlot.innerHTML += `${guess}, `
         numGuess++;
-        remaining.innerHTML = `${11 - numGuess}`;
+        remaining.innerHTML = `${12 - numGuess}`;
     }
 
     function displayMessage(message){
@@ -145,6 +189,7 @@ play.addEventListener('click',()=>{
 
     function newGame(){
         startOver.addEventListener('click',()=>{
+            retry.play();
             randomNumber = parseInt(Math.random()*100+1)
             prevGuess = [];
             numGuess = 2;
@@ -152,10 +197,15 @@ play.addEventListener('click',()=>{
             remaining.innerHTML = `${12 - numGuess}`;
             userInput.removeAttribute('disabled');
             endBar.removeChild(startOver);
-            hint.innerHTML = '';
+            hint.innerHTML = 'HINT';
+            hint.style.backgroundColor = '#8b5e3cd1'
+            submit.style.display = 'flex'
             playGame = true;
         })
     }
    
 
 })
+
+
+

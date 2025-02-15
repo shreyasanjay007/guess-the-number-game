@@ -20,19 +20,19 @@ window.onload = function(){
 
     setTimeout( ()=>{
         document.getElementById('line1').classList.add('fade-in');
-    },100 )
+    },1000 )
 
     setTimeout( ()=>{
         document.getElementById('line2').classList.add('fade-in');
-    },100 )
+    },3000 )
 
     setTimeout( ()=>{
         document.getElementById('line3').classList.add('fade-in');
-    },100 )
+    },5000 )
 
     setTimeout( ()=>{
         document.getElementById('play-btn').classList.add('bounce')
-    },100 )
+    },7000 )
 }
 
 const shout = new Audio('hey.mp3')
@@ -43,7 +43,6 @@ const storyline = document.getElementById('storyline')
 const tagline = document.getElementById('tagline')
 const cash = new Audio('coin-dropped.mp3')
 const lose = new Audio('lose.mp3')
-// const win = new Audio('win.mp3')
 const win = new Audio('yay.mp3')
 const wrong = new Audio('wrong-buzzer.mp3')
 const retry = new Audio('retry.mp3')
@@ -61,16 +60,9 @@ play.addEventListener('click',()=>{
     gameScreen.id = 'game-screen'
     gameBody.appendChild(gameScreen)
 
-    // const replayButton = document.createElement('div')
-    // replayButton.id = 'replay-button'
-    // replayButton.innerHTML = `<img src="replay.png" />`
-    // endBar.appendChild(replayButton)
- 
-
     const startOver = document.createElement('button')
     startOver.id = 'start-over'
     startOver.innerText = 'Dare to try again?'
-    // endBar.appendChild(startOver)
 
     gameScreen.innerHTML = `<div id="ship" >
                                 <img id="ship-sail" src="ship.png" width="300px" />
@@ -111,8 +103,6 @@ play.addEventListener('click',()=>{
         submit.addEventListener('click',(e)=>{
             e.preventDefault();
             const guess = parseInt(userInput.value);
-            console.log(numGuess);
-            // cash.play();
             validateGuess(guess);
             
         })
@@ -222,33 +212,7 @@ play.addEventListener('click',()=>{
         })
     }
 
-    // replayButton.addEventListener('click',()=>{
-    //     console.log('click');
-    //     // playGame = false;
-    //     randomNumber = parseInt(Math.random()*100+1)
-    //     console.log(randomNumber);
-    //     prevGuess = [];
-    //     numGuess = 2
-    //     guessSlot.innerHTML = '';
-    //     attempts.innerHTML = 'Attempts Left :  <span id="last-result" >&nbsp;10</span>'
-    //     remaining.innerHTML = `${12 - numGuess}`;
-    //     // remaining.innerHTML = '10';
-    //     hint.innerHTML = 'HINT'
-    //     hint.style.backgroundColor = '#8b5e3cd1'
-    //     hint.classList.remove('pulse')
-    //     opened.classList.remove('bounce')
-    //     opened.classList.remove('pulse')
-    //     opened.style.display = 'none'
-    //     locked.style.display = 'flex'
-    //     userInput.removeAttribute('disabled')
-    //     userInput.style.backgroundColor = 'rgba(0, 0, 0, 0.623)'
-    //     userInput.value = ''
-    //     userInput.placeholder = 'Enter the Secret Number'
-    //     submit.style.display = 'flex'
-        
-    //     playGame = true;
-        
-    // })
+  
    
    
 

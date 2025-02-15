@@ -49,6 +49,8 @@ const wrong = new Audio('wrong-buzzer.mp3')
 const retry = new Audio('retry.mp3')
 
 
+
+
 play.addEventListener('click',()=>{
     shout.play();
     gameBody.removeChild(storyline)
@@ -58,6 +60,12 @@ play.addEventListener('click',()=>{
     const gameScreen = document.createElement('div')
     gameScreen.id = 'game-screen'
     gameBody.appendChild(gameScreen)
+
+    const replayButton = document.createElement('div')
+    replayButton.id = 'replay-button'
+    replayButton.innerHTML = `<img src="replay.png" />`
+    endBar.appendChild(replayButton)
+ 
 
     const startOver = document.createElement('button')
     startOver.id = 'start-over'
@@ -103,7 +111,7 @@ play.addEventListener('click',()=>{
         submit.addEventListener('click',(e)=>{
             e.preventDefault();
             const guess = parseInt(userInput.value);
-            // console.log(guess);
+            console.log(numGuess);
             // cash.play();
             validateGuess(guess);
             
@@ -119,7 +127,7 @@ play.addEventListener('click',()=>{
             alert('Please enter a number smaller than 100')
         } else{
             prevGuess.push(guess)
-            if(numGuess === 11){
+            if(numGuess === 11 && guess != randomNumber){
                 displayGuess(guess);
                 displayMessage(`Game Over! Secret Number was ${randomNumber}`);
                 submit.style.display = 'none'
@@ -129,8 +137,12 @@ play.addEventListener('click',()=>{
                 lose.play();
                 shipSank.classList.add('shaking')
                 shipSank.classList.add('sinking')
+                locked.classList.add('lost-chest')
+                locked.classList.add('shake')
                 endGame();
-            } else{
+            } 
+            
+            else{
                 displayGuess(guess)
                 checkGuess(guess)
             }
@@ -154,7 +166,7 @@ play.addEventListener('click',()=>{
             opened.classList.add('pulse')
             setTimeout( ()=>{
                 win.play();
-            },1500 )
+            },1000 )
 
         } else if(guess < randomNumber){
             displayMessage(`The treasure lies above, Matey!`)
@@ -200,9 +212,31 @@ play.addEventListener('click',()=>{
             hint.innerHTML = 'HINT';
             hint.style.backgroundColor = '#8b5e3cd1'
             submit.style.display = 'flex'
+            shipSail.style.display = 'flex'
+            shipSank.classList.remove('shaking')
+            shipSank.classList.remove('sinking')
+            shipSank.style.display = 'none'
+            locked.classList.remove('lost-chest')
+            locked.classList.remove('shake')
             playGame = true;
         })
     }
+
+    replayButton.addEventListener('click',()=>{
+        console.log('click');
+        randomNumber = parseInt(Math.random()*100+1)
+        console.log(randomNumber);
+        prevGuess = [];
+        numGuess = 2
+        guessSlot.innerHTML = '';
+        remaining.innerHTML = `${12 - numGuess}`;
+
+        hint.innerHTML = 'HINT'
+        hint.style.backgroundColor = '#8b5e3cd1'
+
+        
+    })
+   
    
 
 })

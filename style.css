@@ -232,16 +232,14 @@ body{
     height: 8vh;
     min-width: 20vw;
     max-width: max-content;
-    border: 1px solid white;
     border-radius: 12px;
     display: flex;
     justify-content: center;
     align-items: center;
     font-size: 28px;
     color: navy;
-    /* text-shadow: 2px 2px 5px #000; */
-    /* background-color: #fff; */
-    /* background-color: #B6862D; */
+    background-color:  #cd8032b1;
+    padding: 0px 5px;
 }
 #guess-field{
     height: 8vh;
@@ -251,12 +249,17 @@ body{
     outline: none;
     border: none;
     font-size: 28px;
-    background-color: rgba(0, 0, 0, 0.374);
+    background-color: rgba(0, 0, 0, 0.623);
+    color:#FFD700
 }
 
-#guess-slot::placeholder{
-    font-size: 24px;
-    color: rgba(0, 0, 0, 0.638);
+#guess-field::placeholder{
+    font-size: 26px;
+    color: rgba(0, 0, 0, 0.552);
+}
+
+#guess-field:focus{
+    border:3px solid #32CD32;
 }
 
 #subt{
@@ -264,33 +267,130 @@ body{
     width: 20vw;
     border-radius: 12px;
     text-align: center;
-    font-size: 22px;
+    font-size: 24px;
     outline: none;
     border: none;
+    /* background-color: #B6862D; */
+    background-color: #35a863;
+    color: #FFF5E1;
+    cursor: pointer;
+    box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.3);
+    transition: transform 0.2s, box-shadow 0.2s;
+    border: 2px solid black;
+
 }
 
-#subt::placeholder{
-    color: black;
+
+#subt:hover {
+    transform: scale(1.05);
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4);
 }
+
+#subt:active {
+    transform: scale(0.95);
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+
+
 #hint{
     height: 8vh;
-    width: 20vw;
-    border: 1px solid white;
+    min-width: 20vw;
+    max-width: max-content;
+    /* border: 1px solid white;ad */
     display: flex;
     align-items: center;
     justify-content: center;
     border-radius: 12px;
+    background-color: #8b5e3cd1;
+    color: #FFF5E1;
+    font-size: 18px;
+    padding: 0px 15px;
+    box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.5);
 }
+
+.pulse{
+    animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+}
+
 #prev-array{
     height: 8vh;
-    width: max-content;
-    border: 1px solid white;
+    min-width: 13vw;
+    max-width: max-content;
+    /* border: 1px solid white; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    border-radius: 12px;
+    background-color: #DCCB98;
+    color: #4B3B2B;
+    box-shadow: inset 3px 3px 5px rgba(0, 0, 0, 0.3);
+    padding: 0px 5px;
+
 }
 
 #start-over{
     height: 9vh;
     width: 15vw;
     margin-left: 39.9vw;
-    border-radius: 20px;
-
+    border-radius: 12px;
+    border: none;
+    outline: none;
+    background-color: #D2691E;
+    font-size: 26px;
+    color: white;
+    cursor: pointer;
+    box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.3);
+    transition: transform 0.2s, box-shadow 0.2s;
 }
+#start-over:hover {
+    transform: scale(1.05);
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4);
+}
+
+#start-over:active {
+    transform: scale(0.95);
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+#opened{
+    display:none
+}
+
+#ship-sank{
+    display: none;
+}
+
+@keyframes shake{
+    0% {transform: translateX(0);}
+    20% {transform: translateX(-10px);}
+    40% {transform: translateX(10px);}
+    60% {transform: translateX(-10px);}
+    80% {transform: translateX(10px);}
+    100% {transform: translateX(0);}
+    
+}
+.shaking {
+    animation: shake 0.5s ease-in-out 2;
+  }
+
+@keyframes sink{
+    0% {transform: translateY(0) rotate(0deg); opacity: 1;}
+    100% {transform: translateY(100px) rotate(15deg); opacity: 0;}
+}
+.sinking {
+    animation: sink 3s forwards;
+  }
+
+
+  

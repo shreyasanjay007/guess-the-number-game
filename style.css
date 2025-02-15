@@ -93,7 +93,7 @@ body{
 #end-bar{
     height: 10vh;
     width: 100vw;
-    border: 1px solid white;
+    /* border: 1px solid white; */
     display: flex;
 }
 
@@ -108,6 +108,7 @@ body{
     display: flex;
     justify-content: center;
     align-items: center;
+    cursor: pointer;
 }
 
 #sound-on{
@@ -119,6 +120,20 @@ body{
     height: 75%;
     width: 75%;
     display: none;
+}
+
+#replay-button{
+    height: 8vh;
+    width: 8vh;
+    /* border: 1px solid white; */
+    margin-top: 8px;
+    margin-left: 20px;
+    cursor: pointer;
+}
+
+#replay-button img{
+    height: 100%;
+    width: 100%;
 }
 
 #storyline{
@@ -200,19 +215,19 @@ body{
 #game-screen{
     height: 60vh;
     width: 90vw;
-    border: 1px solid white;
+    /* border: 1px solid white; */
     display: flex;
 }
 
 #ship{
     height: 100%;
     width: 25vw;
-    border: 1px solid white;
+    /* border: 1px solid white; */
 }
 #game{
     height: 100%;
     width: 45vw;
-    border: 1px solid white;
+    /* border: 1px solid white; */
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -222,7 +237,7 @@ body{
 #treasure{
     height: 100%;
     width: 20vw;
-    border: 1px solid white;
+    /* border: 1px solid white; */
     display: flex;
     align-items: flex-end;
     justify-content: center;
@@ -342,13 +357,13 @@ body{
 #start-over{
     height: 9vh;
     width: 15vw;
-    margin-left: 39.9vw;
+    margin-left: 35.5vw;
     border-radius: 12px;
     border: none;
     outline: none;
     background-color: #D2691E;
     font-size: 26px;
-    color: white;
+    color: black;
     cursor: pointer;
     box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.3);
     transition: transform 0.2s, box-shadow 0.2s;
@@ -393,4 +408,13 @@ body{
   }
 
 
+.lost-chest{
+    filter: grayscale(100%);
+    transition: all 0.5s ease;
+}
+
+.shake{
+    animation: shake 0.5s;
+    animation-iteration-count: 3;
+}
   
